@@ -1,0 +1,17 @@
+
+version: '2'
+
+services:
+
+  extractor:
+    image: fleet/extractor:latest
+    build:
+      context: extractor
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - ./extractor:/opt/extractor
+    env_file:
+      - private.env
+      - shared.env
+    environment:
+      - TERM=xterm

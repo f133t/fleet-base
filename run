@@ -1,0 +1,31 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings 'all';
+no warnings 'experimental';
+use feature qw(switch);
+
+my ($container) = shift || die <<EOF;
+Usage: $0 <container-name> [command [args]]
+Examples:
+  $0 extractor
+  $0 extractor bash
+EOF
+
+# Remove the trailing slash, if it's present from tab-auto-completion:
+$container =~ s{/$}{};
+
+my @cmd = @ARGV;
+
+given ($container) {
+  default {
+    push @cmd, 'bash' unless @cmd;
+  }
+}
+
+# List all containers, running or not:
+my $container_fullname = `docker ps --no-trunc -f name=$container --format "{{.Names}}"`;
+chomp $container_fullname;
+
+die "Unrecognized container '$container'" unless $container_fullname;
+exec qq[docker exec -it $container_fullname @cmd];
