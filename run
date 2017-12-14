@@ -8,8 +8,12 @@ use feature qw(switch);
 my ($container) = shift || die <<EOF;
 Usage: $0 <container-name> [command [args]]
 Examples:
-  $0 extractor
-  $0 extractor bash
+  $0 engine
+  $0 engine bash
+  $0 screenshot
+  $0 screenshot bash
+  $0 redirect
+  $0 redirect bash
 EOF
 
 # Remove the trailing slash, if it's present from tab-auto-completion:

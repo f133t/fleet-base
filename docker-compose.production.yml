@@ -3,28 +3,8 @@ version: '2'
 
 services:
 
-  proxy:
-    image: f133t/proxy:latest
-    build:
-      context: proxy
-      dockerfile: Dockerfile
-    volumes:
-      - ./proxy/config:/etc/nginx
-      - ./proxy/logs:/var/log/nginx
-    ports:
-      - 8080:8080
-    environment:
-      - TERM=xterm
-    networks:
-      - internal
-
   agency:
     image: f133t/agency:latest
-    build:
-      context: agency
-      dockerfile: .docker/Dockerfile
-    volumes:
-      - ./agency:/opt/agency
     env_file:
       - private.env
       - shared.env
@@ -35,11 +15,6 @@ services:
 
   extractor:
     image: f133t/extractor:latest
-    build:
-      context: extractor
-      dockerfile: .docker/Dockerfile
-    volumes:
-      - ./extractor:/opt/extractor
     env_file:
       - private.env
       - shared.env
@@ -57,7 +32,7 @@ services:
     ports:
       - 3306
     environment:
-      - MYSQL_DATABASE=fleet_development
+      - MYSQL_DATABASE=fleet
     volumes:
       - ./mysql-init.d:/docker-entrypoint-initdb.d:ro
     networks:

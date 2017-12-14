@@ -1,2 +1,5 @@
 extractor/
 private.env
+agency/
+proxy/
+etc/
