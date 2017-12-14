@@ -10,6 +10,7 @@ services:
       - shared.env
     environment:
       - TERM=xterm
+      - PROFILE_URL_TEMPLATE
     networks:
       - internal
 
@@ -20,6 +21,7 @@ services:
       - shared.env
     environment:
       - TERM=xterm
+      - PROFILE_URL_TEMPLATE
     networks:
       - internal
 
