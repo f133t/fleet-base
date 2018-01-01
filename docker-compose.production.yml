@@ -11,6 +11,7 @@ services:
     environment:
       - TERM=xterm
       - PROFILE_URL_TEMPLATE
+      - PARTNERID
     networks:
       - internal
 
@@ -22,6 +23,7 @@ services:
     environment:
       - TERM=xterm
       - PROFILE_URL_TEMPLATE
+      - PARTNERID
     networks:
       - internal
 
